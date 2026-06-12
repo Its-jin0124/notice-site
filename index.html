@@ -5,12 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>自治会からのお知らせ</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
-    h1 { font-size: 1.4rem; }
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+    }
+    .header-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    h1 {
+      font-size: 1.6rem;
+      color: #1a4a8d;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+    }
+    .footer {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 0.8rem;
+      color: #666;
+    }
   </style>
 </head>
 <body>
+
+  <!-- 写真（後で差し替え可能） -->
+  <img src="https://via.placeholder.com/1200x400?text=Header+Image" class="header-image">
+
   <h1>自治会からのお知らせ</h1>
-  <p>ここに周知内容が表示されます。</p>
+
+  <div class="card">
+    <p>ここに周知内容が表示されます。</p>
+  </div>
+
+  <div class="footer">
+    © さくら坂3丁目 自治会
+  </div>
+
 </body>
 </html>
