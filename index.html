@@ -20,12 +20,22 @@
       gap: 20px;
     }
 
-    .photo {
-      flex: 1 1 250px;
-      max-width: 250px;
-    }
-    .photo img {
+    /* ▼ PC用画像（デフォルト表示） */
+    .pc-img {
       width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: block;
+    }
+
+    /* ▼ スマホ用画像（デフォルトは非表示） */
+    .sp-img {
+      display: none;
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
@@ -38,11 +48,14 @@
       padding: 20px;
     }
 
+    /* ▼ タイトル（PCでも少し小さめ） */
     h1 {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       color: #333;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      line-height: 1.3;
+      white-space: nowrap; /* 強制1行 */
     }
 
     .date {
@@ -75,22 +88,22 @@
     /* ▼▼ スマホ専用の最適化 ▼▼ */
     @media (max-width: 600px) {
 
-      .photo img {
-        width: 180px;   /* 画像を小さく */
-      }
+      /* PC画像を非表示、スマホ画像を表示 */
+      .pc-img { display: none; }
+      .sp-img { display: block; }
 
       h1 {
-        font-size: 1.1rem;  /* タイトルを小さくして改行防止 */
-        margin-bottom: 15px;
+        font-size: 1rem;
+        margin-bottom: 10px;
       }
 
       .notice {
-        font-size: 1rem;    /* 内容は読みやすい大きさ */
-        min-height: 5em;    /* 最低3〜4行確保 */
+        font-size: 1rem;
+        min-height: 5em;
       }
 
       body {
-        padding: 10px;      /* スマホは余白を少し狭く */
+        padding: 10px;
       }
     }
   </style>
@@ -98,13 +111,15 @@
 <body>
 
   <div class="container">
-    <div class="photo">
-      <img src="sakura.jpg" alt="桜の写真">
-      <p style="font-size:0.8rem; text-align:center;">（試行版）<br>アクセス数：</p>
-    </div>
+
+    <!-- PC用画像 -->
+    <img src="sakura.jpg" class="pc-img" alt="桜の写真（PC用）">
+
+    <!-- スマホ用画像 -->
+    <img src="smaPhSakura.jpg" class="sp-img" alt="桜の写真（スマホ用）">
 
     <div class="content">
-      <h1>♪ さくら坂3丁目　自治会　周知　♪</h1>
+      <h1>♪ さくら坂3丁目 自治会 周知 ♪</h1>
 
       <div class="date">周知日付：2026年06月12日 17:21</div>
 
@@ -115,6 +130,7 @@
 
       <div class="footer">© さくら坂3丁目 自治会</div>
     </div>
+
   </div>
 
 </body>
