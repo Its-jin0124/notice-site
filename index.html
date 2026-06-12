@@ -12,7 +12,6 @@
       padding: 20px;
     }
 
-    /* 横並びレイアウト（スマホでは縦並び） */
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -21,7 +20,6 @@
       gap: 20px;
     }
 
-    /* 写真エリア */
     .photo {
       flex: 1 1 250px;
       max-width: 250px;
@@ -32,7 +30,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    /* 右側の内容エリア */
     .content {
       flex: 2 1 400px;
       background: #fff;
@@ -41,7 +38,6 @@
       padding: 20px;
     }
 
-    /* タイトル中央揃え */
     h1 {
       font-size: 1.4rem;
       color: #333;
@@ -49,7 +45,6 @@
       margin-bottom: 20px;
     }
 
-    /* 周知日付（囲い線を狭く） */
     .date {
       border: 2px dashed #aaa;
       border-radius: 8px;
@@ -59,15 +54,15 @@
       display: inline-block;
     }
 
-    /* 内容（最低3段・可変） */
     .notice {
       border: 2px dashed #aaa;
       border-radius: 8px;
       padding: 10px;
       background: #ffec80;
-      min-height: 4.5em; /* 約3行分 */
+      min-height: 4.5em;
       line-height: 1.6;
-      white-space: pre-wrap; /* 改行を保持しつつ可変 */
+      white-space: pre-wrap;
+      font-size: 1rem;
     }
 
     .footer {
@@ -75,6 +70,28 @@
       font-size: 0.8rem;
       color: #666;
       margin-top: 20px;
+    }
+
+    /* ▼▼ スマホ専用の最適化 ▼▼ */
+    @media (max-width: 600px) {
+
+      .photo img {
+        width: 180px;   /* 画像を小さく */
+      }
+
+      h1 {
+        font-size: 1.1rem;  /* タイトルを小さくして改行防止 */
+        margin-bottom: 15px;
+      }
+
+      .notice {
+        font-size: 1rem;    /* 内容は読みやすい大きさ */
+        min-height: 5em;    /* 最低3〜4行確保 */
+      }
+
+      body {
+        padding: 10px;      /* スマホは余白を少し狭く */
+      }
     }
   </style>
 </head>
@@ -89,10 +106,8 @@
     <div class="content">
       <h1>♪ さくら坂3丁目　自治会　周知　♪</h1>
 
-      <!-- yyyy年mm月dd日 hh:mm 形式 -->
       <div class="date">周知日付：2026年06月12日 17:21</div>
 
-      <!-- 内容は長文対応・最低3行確保 -->
       <div class="notice">
 ここに周知内容が表示されます。
 長文になっても自動で高さが伸びます。
