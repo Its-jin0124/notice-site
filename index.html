@@ -11,6 +11,8 @@
       margin: 0;
       padding: 20px;
     }
+
+    /* 横並びレイアウト（スマホでは縦並び） */
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -18,6 +20,8 @@
       justify-content: center;
       gap: 20px;
     }
+
+    /* 写真エリア */
     .photo {
       flex: 1 1 250px;
       max-width: 250px;
@@ -27,6 +31,8 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
+
+    /* 右側の内容エリア */
     .content {
       flex: 2 1 400px;
       background: #fff;
@@ -34,20 +40,36 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       padding: 20px;
     }
+
+    /* タイトル中央揃え */
     h1 {
       font-size: 1.4rem;
       color: #333;
+      text-align: center;
       margin-bottom: 20px;
     }
-    .date, .notice {
+
+    /* 周知日付（囲い線を狭く） */
+    .date {
+      border: 2px dashed #aaa;
+      border-radius: 8px;
+      padding: 6px 10px;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      display: inline-block;
+    }
+
+    /* 内容（最低3段・可変） */
+    .notice {
       border: 2px dashed #aaa;
       border-radius: 8px;
       padding: 10px;
-      margin-bottom: 15px;
+      background: #ffec80;
+      min-height: 4.5em; /* 約3行分 */
+      line-height: 1.6;
+      white-space: pre-wrap; /* 改行を保持しつつ可変 */
     }
-    .notice {
-      background: #ffcc33;
-    }
+
     .footer {
       text-align: center;
       font-size: 0.8rem;
@@ -66,8 +88,16 @@
 
     <div class="content">
       <h1>♪ さくら坂3丁目　自治会　周知　♪</h1>
-      <div class="date">周知日付：2026年6月12日</div>
-      <div class="notice">内容：ここに周知内容が表示されます。</div>
+
+      <!-- yyyy年mm月dd日 hh:mm 形式 -->
+      <div class="date">周知日付：2026年06月12日 17:21</div>
+
+      <!-- 内容は長文対応・最低3行確保 -->
+      <div class="notice">
+ここに周知内容が表示されます。
+長文になっても自動で高さが伸びます。
+      </div>
+
       <div class="footer">© さくら坂3丁目 自治会</div>
     </div>
   </div>
