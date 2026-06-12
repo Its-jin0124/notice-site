@@ -3,55 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>自治会からのお知らせ</title>
+  <title>さくら坂3丁目 自治会 周知</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #f2f2f2;
+      font-family: "Yu Gothic", sans-serif;
+      background: #f7f7f7;
       margin: 0;
-      padding: 0;
-      line-height: 1.8;
-    }
-    .header-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    h1 {
-      font-size: 1.6rem;
-      color: #1a4a8d;
-      text-align: center;
-      margin: 20px 0;
-    }
-    .card {
-      background: #fff;
       padding: 20px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 20px;
+    }
+    .photo {
+      flex: 1 1 250px;
+      max-width: 250px;
+    }
+    .photo img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .content {
+      flex: 2 1 400px;
+      background: #fff;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      max-width: 800px;
-      margin: 0 auto 30px auto;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .date, .notice {
+      border: 2px dashed #aaa;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+    .notice {
+      background: #ffcc33;
     }
     .footer {
       text-align: center;
-      margin: 20px 0;
       font-size: 0.8rem;
       color: #666;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
-  <!-- 写真（後で差し替え可能） -->
-  <img src="https://via.placeholder.com/1200x400?text=Header+Image" class="header-image">
+  <div class="container">
+    <div class="photo">
+      <img src="https://raw.githubusercontent.com/Its-jin0124/notice-site/main/sakura.jpg" alt="桜の写真">
+      <p style="font-size:0.8rem; text-align:center;">（試行版）<br>アクセス数：</p>
+    </div>
 
-  <h1>自治会からのお知らせ</h1>
-
-  <div class="card">
-    <p>ここに周知内容が表示されます。</p>
-  </div>
-
-  <div class="footer">
-    © さくら坂3丁目 自治会
+    <div class="content">
+      <h1>♪ さくら坂3丁目　自治会　周知　♪</h1>
+      <div class="date">周知日付：2026年6月12日</div>
+      <div class="notice">内容：ここに周知内容が表示されます。</div>
+      <div class="footer">© さくら坂3丁目 自治会</div>
+    </div>
   </div>
 
 </body>
