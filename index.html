@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>さくら坂3丁目 自治会 周知</title>
+
   <style>
     body {
       font-family: "Yu Gothic", sans-serif;
@@ -20,7 +21,6 @@
       gap: 20px;
     }
 
-    /* ▼ PC用画像（デフォルト表示） */
     .pc-img {
       width: 100%;
       height: 180px;
@@ -30,7 +30,6 @@
       display: block;
     }
 
-    /* ▼ スマホ用画像（デフォルトは非表示） */
     .sp-img {
       display: none;
       width: 100%;
@@ -48,14 +47,13 @@
       padding: 20px;
     }
 
-    /* ▼ タイトル（PCでも少し小さめ） */
     h1 {
       font-size: 1.2rem;
       color: #333;
       text-align: center;
       margin-bottom: 15px;
       line-height: 1.3;
-      white-space: nowrap; /* 強制1行 */
+      white-space: nowrap;
     }
 
     .date {
@@ -85,10 +83,7 @@
       margin-top: 20px;
     }
 
-    /* ▼▼ スマホ専用の最適化 ▼▼ */
     @media (max-width: 600px) {
-
-      /* PC画像を非表示、スマホ画像を表示 */
       .pc-img { display: none; }
       .sp-img { display: block; }
 
@@ -108,30 +103,51 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
 
-    <!-- PC用画像 -->
     <img src="sakura.jpg" class="pc-img" alt="桜の写真（PC用）">
-
-    <!-- スマホ用画像 -->
     <img src="smaPhSakura.jpg" class="sp-img" alt="桜の写真（スマホ用）">
 
     <div class="content">
       <h1>♪ さくら坂3丁目 自治会 周知 ♪</h1>
 
-      <div class="date">周知日付：2026年06月12日 17:21</div>
+      <!-- ▼ GASから取得した日付が入る -->
+      <div class="date" id="notice-date">読み込み中...</div>
 
-      <div class="notice">
-ここに周知内容が表示されます。
-長文になっても自動で高さが伸びます。
+      <!-- ▼ GASから取得した本文が入る -->
+      <div class="notice" id="notice-text">
+        読み込み中...
       </div>
 
       <div class="footer">© さくら坂3丁目 自治会</div>
     </div>
 
   </div>
+
+  <script>
+    // ▼ GAS Web API の URL（あなたの exec URL）
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycbzkU1ICIf8jnUE5LfZmWUAhIzmVn-PoKnzx4geXqB6TTSAwAMcpFc4u_fl44kRo9Mfl/exec?mode=getNotice";
+
+    // ▼ 周知内容を取得して反映
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("notice-date").innerText =
+          "周知日付：" + data.date;
+
+        document.getElementById("notice-text").innerText =
+          data.text;
+      })
+      .catch(err => {
+        document.getElementById("notice-date").innerText = "取得エラー";
+        document.getElementById("notice-text").innerText =
+          "データを取得できませんでした。";
+      });
+  </script>
 
 </body>
 </html>
