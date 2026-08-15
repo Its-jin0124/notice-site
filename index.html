@@ -127,41 +127,47 @@
 
   </div>
 
-  <script>
-    // ▼ GAS Web API の URL
-    const API_URL =
-      "https://script.google.com/macros/s/AKfycbzkU1ICIf8jnUE5LfZmWUAhIzmVn-PoKnzx4geXqB6TTSAwAMcpFc4u_fl44kRo9Mfl/exec?mode=getNotice";
+<script>
+  // ▼ GAS Web API の URL（周知内容）
+  const API_URL =
+    "https://script.google.com/macros/s/AKfycbzkU1ICIf8jnUE5LfZmWUAhIzmVn-PoKnzx4geXqB6TTSAwAMcpFc4u_fl44kRo9Mfl/exec?mode=getNotice";
 
-    /* ▼ ISO文字列 → JST yyyy/mm/dd hh:mm に変換 */
-    function formatJST(isoString) {
-      const d = new Date(isoString);
+  // ▼ PVログAPI（あなたのURL）
+  const PV_URL =
+    "https://script.google.com/macros/s/AKfycbyh5A-7zqWZn7hYONDYg1MnkdN8tRxGh53nASj6ugT89kd0WtuO9AeSR_GZRftnPFOBnw/exec";
 
-      const yyyy = d.getFullYear();
-      const mm = ("0" + (d.getMonth() + 1)).slice(-2);
-      const dd = ("0" + d.getDate()).slice(-2);
-      const hh = ("0" + d.getHours()).slice(-2);
-      const mi = ("0" + d.getMinutes()).slice(-2);
+  /* ▼ ISO文字列 → JST yyyy/mm/dd hh:mm に変換 */
+  function formatJST(isoString) {
+    const d = new Date(isoString);
+    const yyyy = d.getFullYear();
+    const mm = ("0" + (d.getMonth() + 1)).slice(-2);
+    const dd = ("0" + d.getDate()).slice(-2);
+    const hh = ("0" + d.getHours()).slice(-2);
+    const mi = ("0" + d.getMinutes()).slice(-2);
+    return `${yyyy}/${mm}/${dd} ${hh}:${mi}`;
+  }
 
-      return `${yyyy}/${mm}/${dd} ${hh}:${mi}`;
-    }
+  // ▼ 周知内容を取得して反映
+  fetch(API_URL)
+    .then(res => res.json())
+    .then(data => {
+      const formatted = formatJST(data.date);
 
-    // ▼ 周知内容を取得して反映
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(data => {
-        const formatted = formatJST(data.date);
+      document.getElementById("notice-date").innerText =
+        "周知日付：" + formatted;
 
-        document.getElementById("notice-date").innerText =
-          "周知日付：" + formatted;
+      document.getElementById("notice-text").innerText = data.text;
 
-        document.getElementById("notice-text").innerText = data.text;
-      })
-      .catch(err => {
-        document.getElementById("notice-date").innerText = "取得エラー";
-        document.getElementById("notice-text").innerText =
-          "データを取得できませんでした。";
-      });
-  </script>
+      // ▼ PVログ送信（ここが重要）
+      fetch(PV_URL + "?ua=" + encodeURIComponent(navigator.userAgent));
+    })
+    .catch(err => {
+      document.getElementById("notice-date").innerText = "取得エラー";
+      document.getElementById("notice-text").innerText =
+        "データを取得できませんでした。";
+    });
+</script>
+
 
 </body>
 </html>
